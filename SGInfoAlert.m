@@ -47,23 +47,16 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect,
     return self;
 }
 
-// 将 bgcolor_ 的 Alpha 置为 指定值。
-//- (CGColorRef)convert:(CGColorRef)color ToAlpha:(float)a{
-//    CGColorSpaceRef colorSpace = CGColorGetColorSpace(color);
-//    const float *cmps = CGColorGetComponents(color);
-//    float red = cmps[0];
-//    float green = cmps[1];
-//    float blue = cmps[2];
-//    const float bgComps[4] = {red, green, blue, a};
-//    return CGColorCreate(colorSpace, bgComps);
-//}
-
 - (void)drawRect:(CGRect)rect{
     CGContextRef context = UIGraphicsGetCurrentContext();
+    // 背景0.8透明度
+    CGContextSetAlpha(context, .8);
     addRoundedRectToPath(context, rect, 4.0f, 4.0f);
-//    CGContextSetFillColorWithColor(context, [self convert:bgcolor_ ToAlpha:.2]);
     CGContextSetFillColorWithColor(context, bgcolor_);
     CGContextFillPath(context);
+    
+    // 文字1.0透明度
+    CGContextSetAlpha(context, 1.0);
     CGContextSetFillColorWithColor(context, [[UIColor blackColor] CGColor]);
     float x = (rect.size.width - fontSize_.width) / 2.0;
     float y = (rect.size.height - fontSize_.height) / 2.0;
@@ -103,7 +96,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect,
     [alert release];
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:.3f];
-    alert.alpha = .8;
+    alert.alpha = 1.0;
     [UIView commitAnimations];
     [alert performSelector:@selector(fadeAway) withObject:nil afterDelay:1];
 }
