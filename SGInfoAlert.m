@@ -85,7 +85,9 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect,
 
 + (void)showInfo:(NSString *)info 
          bgColor:(CGColorRef)color
-          inView:(UIView *)view{
+          inView:(UIView *)view 
+        vertical:(float)height{
+    height = height < 0 ? 0 : height > 1 ? 1 : height;
 //    CGSize size = [info sizeWithFont:[UIFont systemFontOfSize:kSGInfoAlert_fontSize]
 //                            forWidth:kSGInfoAlert_width
 //                       lineBreakMode:UILineBreakModeTailTruncation];
@@ -93,7 +95,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect,
                    constrainedToSize:kMax_ConstrainedSize];
     CGRect frame = CGRectMake(0, 0, size.width, size.height);
     SGInfoAlert *alert = [[SGInfoAlert alloc] initWithFrame:frame bgColor:color info:info];
-    alert.center = CGPointMake(view.center.x, view.frame.size.height*.8);
+    alert.center = CGPointMake(view.center.x, view.frame.size.height*height);
     alert.alpha = 0;
     [view addSubview:alert];
     [alert release];
