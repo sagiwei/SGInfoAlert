@@ -57,6 +57,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect,
     
     // 文字1.0透明度
     CGContextSetAlpha(context, 1.0);
+    CGContextSetShadowWithColor(context, CGSizeMake(0, -1), 1, [[UIColor whiteColor] CGColor]);
     CGContextSetFillColorWithColor(context, [[UIColor blackColor] CGColor]);
     float x = (rect.size.width - fontSize_.width) / 2.0;
     float y = (rect.size.height - fontSize_.height) / 2.0;
@@ -85,9 +86,11 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect,
 + (void)showInfo:(NSString *)info 
          bgColor:(CGColorRef)color
           inView:(UIView *)view{
+//    CGSize size = [info sizeWithFont:[UIFont systemFontOfSize:kSGInfoAlert_fontSize]
+//                            forWidth:kSGInfoAlert_width
+//                       lineBreakMode:UILineBreakModeTailTruncation];
     CGSize size = [info sizeWithFont:[UIFont systemFontOfSize:kSGInfoAlert_fontSize]
-                            forWidth:kSGInfoAlert_width
-                       lineBreakMode:UILineBreakModeTailTruncation];
+                   constrainedToSize:kMax_ConstrainedSize];
     CGRect frame = CGRectMake(0, 0, size.width, size.height);
     SGInfoAlert *alert = [[SGInfoAlert alloc] initWithFrame:frame bgColor:color info:info];
     alert.center = CGPointMake(view.center.x, view.frame.size.height*.8);
@@ -98,7 +101,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect,
     [UIView setAnimationDuration:.3f];
     alert.alpha = 1.0;
     [UIView commitAnimations];
-    [alert performSelector:@selector(fadeAway) withObject:nil afterDelay:1];
+    [alert performSelector:@selector(fadeAway) withObject:nil afterDelay:1.5];
 }
 
 @end

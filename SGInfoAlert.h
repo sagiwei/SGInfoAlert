@@ -10,6 +10,7 @@
 
 #define kSGInfoAlert_fontSize       15
 #define kSGInfoAlert_width          200
+#define kMax_ConstrainedSize        CGSizeMake(200, 100)
 
 @interface SGInfoAlert : UIView{
     CGColorRef bgcolor_;
