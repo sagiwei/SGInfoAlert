@@ -41,7 +41,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect,
     if (self) {
         self.backgroundColor = [UIColor clearColor];
         bgcolor_ = color;
-        info_ = info;
+        info_ = [[NSString alloc] initWithString:info];
         fontSize_ = frame.size;
     }
     return self;
@@ -66,6 +66,7 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect,
 }
 
 - (void)dealloc{
+    [info_ release];
     [super dealloc];
 }
 
