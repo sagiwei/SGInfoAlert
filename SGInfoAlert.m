@@ -1,8 +1,7 @@
 //
 //  SGInfoAlert.m
-//  Daily Carb
 //
-//  Created by Maxwell YQ003 on 3/1/12.
+//  Created by Azure_Sagi on 3/1/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -16,23 +15,23 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect,
                                  float ovalWidth,float ovalHeight)
 {
     float fw, fh;
-    if (ovalWidth == 0 || ovalHeight == 0) { // 1
+    if (ovalWidth == 0 || ovalHeight == 0) { 
         CGContextAddRect(context, rect);
         return;
     }
-    CGContextSaveGState(context); // 2
-    CGContextTranslateCTM (context, CGRectGetMinX(rect), // 3
+    CGContextSaveGState(context); 
+    CGContextTranslateCTM (context, CGRectGetMinX(rect), 
                            CGRectGetMinY(rect));
-    CGContextScaleCTM (context, ovalWidth, ovalHeight); // 4
-    fw = CGRectGetWidth (rect) / ovalWidth; // 5
-    fh = CGRectGetHeight (rect) / ovalHeight; // 6
-    CGContextMoveToPoint(context, fw, fh/2); // 7
-    CGContextAddArcToPoint(context, fw, fh, fw/2, fh, 1); // 8
-    CGContextAddArcToPoint(context, 0, fh, 0, fh/2, 1); // 9
-    CGContextAddArcToPoint(context, 0, 0, fw/2, 0, 1); // 10
-    CGContextAddArcToPoint(context, fw, 0, fw, fh/2, 1); // 11
-    CGContextClosePath(context); // 12
-    CGContextRestoreGState(context); // 13
+    CGContextScaleCTM (context, ovalWidth, ovalHeight); 
+    fw = CGRectGetWidth (rect) / ovalWidth; 
+    fh = CGRectGetHeight (rect) / ovalHeight; 
+    CGContextMoveToPoint(context, fw, fh/2); 
+    CGContextAddArcToPoint(context, fw, fh, fw/2, fh, 1); 
+    CGContextAddArcToPoint(context, 0, fh, 0, fh/2, 1); 
+    CGContextAddArcToPoint(context, 0, 0, fw/2, 0, 1); 
+    CGContextAddArcToPoint(context, fw, 0, fw, fh/2, 1); 
+    CGContextClosePath(context); 
+    CGContextRestoreGState(context); 
 }
 
 - (id)initWithFrame:(CGRect)frame bgColor:(CGColorRef)color info:(NSString*)info{
@@ -89,9 +88,6 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect,
           inView:(UIView *)view 
         vertical:(float)height{
     height = height < 0 ? 0 : height > 1 ? 1 : height;
-//    CGSize size = [info sizeWithFont:[UIFont systemFontOfSize:kSGInfoAlert_fontSize]
-//                            forWidth:kSGInfoAlert_width
-//                       lineBreakMode:UILineBreakModeTailTruncation];
     CGSize size = [info sizeWithFont:[UIFont systemFontOfSize:kSGInfoAlert_fontSize]
                    constrainedToSize:kMax_ConstrainedSize];
     CGRect frame = CGRectMake(0, 0, size.width, size.height);
