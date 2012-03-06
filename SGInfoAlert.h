@@ -1,8 +1,7 @@
 //
-//  SGInfoAlert.h
-//  Daily Carb
+//  SGInfoAlert.m
 //
-//  Created by Maxwell YQ003 on 3/1/12.
+//  Created by Azure_Sagi on 3/1/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
