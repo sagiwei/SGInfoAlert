@@ -1,5 +1,5 @@
 //
-//  TestViewController.h
+//  AppDelegate.h
 //  InfoAlertDemo
 //
 //  Created by veryeast on 12-9-7.
@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TestViewController : UIViewController
-<UITableViewDataSource,UITableViewDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
 
 @end
