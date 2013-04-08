@@ -100,8 +100,10 @@
     NSString *info = [NSString stringWithFormat:@"Section:%d\nRow:%d",indexPath.section,indexPath.row];
     [SGInfoAlert showInfo:info
                   bgColor:[[UIColor darkGrayColor] CGColor]
+                  fgColor:[[UIColor whiteColor] CGColor]
                    inView:self.view
                  vertical:0.7];
+
 }
 
 @end
