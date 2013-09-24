@@ -13,6 +13,7 @@
 
 @interface SGInfoAlert : UIView{
     CGColorRef bgcolor_;
+    CGColorRef fgcolor_;
     NSString *info_;
     CGSize fontSize_;
 }
@@ -21,7 +22,8 @@
 // vertical 为垂直方向上出现的位置 从 取值 0 ~ 1。
 + (void)showInfo:(NSString*)info 
          bgColor:(CGColorRef)color
-          inView:(UIView*)view 
+         fgColor:(CGColorRef)color
+          inView:(UIView*)view
         vertical:(float)height;
 
 @end

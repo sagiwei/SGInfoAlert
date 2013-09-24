@@ -34,12 +34,13 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect,
     CGContextRestoreGState(context); 
 }
 
-- (id)initWithFrame:(CGRect)frame bgColor:(CGColorRef)color info:(NSString*)info{
+- (id)initWithFrame:(CGRect)frame bgColor:(CGColorRef)bgcolor fgColor:(CGColorRef)fgcolor info:(NSString*)info{
     CGRect viewR = CGRectMake(0, 0, frame.size.width*1.2, frame.size.height*1.2);
     self = [super initWithFrame:viewR];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-        bgcolor_ = color;
+        bgcolor_ = bgcolor;
+        fgcolor_ = fgcolor;
         info_ = [[NSString alloc] initWithString:info];
         fontSize_ = frame.size;
     }
@@ -56,8 +57,8 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect,
     
     // 文字1.0透明度
     CGContextSetAlpha(context, 1.0);
-    CGContextSetShadowWithColor(context, CGSizeMake(0, -1), 1, [[UIColor whiteColor] CGColor]);
-    CGContextSetFillColorWithColor(context, [[UIColor blackColor] CGColor]);
+    //CGContextSetShadowWithColor(context, CGSizeMake(0, -1), 1, [[UIColor whiteColor] CGColor]);
+    CGContextSetFillColorWithColor(context, fgcolor_);
     float x = (rect.size.width - fontSize_.width) / 2.0;
     float y = (rect.size.height - fontSize_.height) / 2.0;
     CGRect r = CGRectMake(x, y, fontSize_.width, fontSize_.height);
@@ -84,14 +85,15 @@ static void addRoundedRectToPath(CGContextRef context, CGRect rect,
 }
 
 + (void)showInfo:(NSString *)info 
-         bgColor:(CGColorRef)color
+         bgColor:(CGColorRef)bgcolor
+         fgColor:(CGColorRef)fgcolor
           inView:(UIView *)view 
         vertical:(float)height{
     height = height < 0 ? 0 : height > 1 ? 1 : height;
     CGSize size = [info sizeWithFont:[UIFont systemFontOfSize:kSGInfoAlert_fontSize]
                    constrainedToSize:kMax_ConstrainedSize];
     CGRect frame = CGRectMake(0, 0, size.width, size.height);
-    SGInfoAlert *alert = [[SGInfoAlert alloc] initWithFrame:frame bgColor:color info:info];
+    SGInfoAlert *alert = [[SGInfoAlert alloc] initWithFrame:frame bgColor:bgcolor fgColor:fgcolor info:info];
     alert.center = CGPointMake(view.center.x, view.frame.size.height*height);
     alert.alpha = 0;
     [view addSubview:alert];
