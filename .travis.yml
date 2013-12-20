@@ -1,3 +1,3 @@
 language: objective-c
-xcode_project: InfoAlertDemo.xcodeproj
+xcode_project: ./InfoAlertDemo/InfoAlertDemo.xcodeproj
 xcode_scheme: InfoAlertDemo
